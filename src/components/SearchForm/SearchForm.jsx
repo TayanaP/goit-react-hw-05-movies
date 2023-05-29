@@ -1,37 +1,21 @@
 import { useState } from 'react';
 import { Form, Input, Button } from 'components/SearchForm/SearchForm.styled';
 
-// export const SearchForm = ({ setSearchParams }) => {
-//   const [query, setQuery] = useState('');
-
-//   const handleSubmit = e => {
-//     e.preventDefault();
-
-//     setSearchParams({ query });
-//   };
-
-//   const handleSearchParams = ({ target: { value } }) => {
-//     setQuery(value);
-//   };
-
-//   return <div>Form</div>;
-// };
-
 export const SearchForm = ({ onSubmit }) => {
-  const [query, setQuery] = useState('');
+  const [value, setValue] = useState('');
 
   const handleChange = event => {
-    setQuery(event.target.query);
+    setValue(event.target.value);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (!query) {
+    if (!value) {
       alert('Select any movie');
       return;
     }
-    onSubmit(query);
-    setQuery('');
+    onSubmit({ query: value });
+    setValue('');
   };
 
   return (
@@ -40,8 +24,8 @@ export const SearchForm = ({ onSubmit }) => {
         type="text"
         placeholder="Name movie"
         autoFocus
-        value={query}
         onChange={handleChange}
+        value={value}
       />
       <Button type="submit">Search</Button>
     </Form>
