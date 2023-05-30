@@ -13,18 +13,12 @@ export const Movies = () => {
   useEffect(() => {
     const query = searchParams.get('query');
     if (!query) return;
-    // console.log(query);
-
+  
     getMovieByQuery(query)
       .then(setMovies)
       .catch(console.log)
       .finally(() => setShowLoader(false));
   }, [searchParams]);
-
-  // const onSubmit = movie => {
-  //   setSearchParams({ query: movie });
-  // };
-  // console.log(movies);
 
   return (
     <>
